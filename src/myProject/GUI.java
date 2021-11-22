@@ -5,8 +5,8 @@ import java.awt.*;
 
 /**
  * This class is used for ...
- * @autor
- * @version v.1.0.0 date:dd/mm/aaaa
+ * @autor Paola-J Rodriguez-C paola.rodriguez@correounivalle.edu.co
+ * @version v.1.0.0 date:21/11/2021
  */
 public class GUI extends JFrame {
 
