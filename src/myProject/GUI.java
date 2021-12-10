@@ -5,7 +5,7 @@ import java.awt.*;
 
 /**
  * This class is used for ...
- * @autor Paola-J Rodriguez-C paola.rodriguez@correounivalle.edu.co
+ * @autor Alejandro-Villamil  paola.rodriguez@correounivalle.edu.co
  * @version v.1.0.0 date:21/11/2021
  */
 public class GUI extends JFrame {
