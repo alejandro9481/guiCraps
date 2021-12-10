@@ -15,18 +15,19 @@ public class GUI extends JFrame {
             + "Oprime el Botón lanzar para iniciar el juego"
             + "\nSi tu tiro de salida es 7 u 11 ganas con natural"
             + "\n Si tu tiro de salida es 2,3 u 12 pierdes con Craps"
-            +"\n Si sacas cualquier otro valor estableceras el Punto"
-            +"\nEstado en punto podras seguir lanzando los dados"
-            +"\npero ahora ganaras si sacas nuevamente el valor de Punto"
-            +"\nsin que previamente hayas sacado 7";
+            + "\n Si sacas cualquier otro valor estableceras el Punto"
+            + "\nEstado en punto podras seguir lanzando los dados"
+            + "\npero ahora ganaras si sacas nuevamente el valor de Punto"
+            + "\nsin que previamente hayas sacado 7";
 
 
     private Header headerProject;
     private JLabel dado1, dado2;
     private JButton lanzar;
     private JPanel panelDados, panelResultados;
-    private  ImageIcon imagenDado;
-    private JTextArea resultados;
+    private ImageIcon imagenDado;
+    private JTextArea mensajesSalidas, resultadosDados;
+    private JSeparator separador;
     private Escucha escucha;
     private ModelCraps modelCraps;
 
@@ -76,11 +77,25 @@ public class GUI extends JFrame {
 
         this.add(panelDados,BorderLayout.CENTER);
 
-        resultados = new JTextArea(7,31);
-        resultados.setText(MENSAJE_INICIO);
-        resultados.setBorder(BorderFactory.createTitledBorder("Que debes hacer"));
-        JScrollPane scroll = new JScrollPane(resultados);
-        this.add(scroll,BorderLayout.EAST);
+        mensajesSalidas = new JTextArea(7,31);
+        mensajesSalidas.setText(MENSAJE_INICIO);
+        //mensajesSalidas.setBorder(BorderFactory.createTitledBorder("Que debes hacer"));
+        JScrollPane scroll = new JScrollPane(mensajesSalidas);
+
+
+        panelResultados = new JPanel();
+        panelResultados.setBorder(BorderFactory.createTitledBorder("Que debes hacer"));
+        panelResultados.add(scroll);
+        panelResultados.setPreferredSize(new Dimension(370,180));
+
+
+
+        this.add(panelResultados,BorderLayout.EAST);
+
+        resultadosDados = new JTextArea(4,31);
+        separador = new  JSeparator();
+        separador.setPreferredSize(new Dimension(320,7));
+        separador.setBackground(Color.BLUE);
     }
 
     /**
@@ -109,7 +124,17 @@ public class GUI extends JFrame {
             dado2.setIcon(imagenDado);
 
             modelCraps.determinarJuego();
-            resultados.setText(modelCraps.getEstadoToString());
+
+            panelResultados.removeAll();
+            panelResultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+            panelResultados.add(resultadosDados);
+            panelResultados.add(separador);
+            panelResultados.add(mensajesSalidas);
+            resultadosDados.setText(modelCraps.getEstadoToString()[0]);
+            mensajesSalidas.setRows(4);
+            mensajesSalidas.setText(modelCraps.getEstadoToString()[1]);
+            revalidate();
+            repaint();
         }
     }
 }
