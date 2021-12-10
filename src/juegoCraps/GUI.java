@@ -1,4 +1,4 @@
-package myProject;
+package juegoCraps;
 
 import javax.swing.*;
 import java.awt.*;
